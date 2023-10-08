@@ -1,2 +1,2 @@
 # TapItApp
-Tap it Project using Jetpack Compose
+ Tap it Project using Jetpack Compose
