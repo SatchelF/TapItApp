@@ -24,9 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.mytapitassignment.ui.theme.components.BoxGrid
+import com.example.mytapitassignment.viewModel.GameViewModel
 
 @Composable
-fun GameScreen(navController: NavController) {
+fun GameScreen(viewModel: GameViewModel,navController: NavController) {
     val colors = listOf(Color.Red, Color.Blue, Color.Green, Color.Yellow)
     val currentLevel = remember { mutableStateOf(1) }
     val pillBoxColors = remember { mutableStateOf(mutableListOf(colors.random())) }
@@ -74,6 +75,7 @@ fun GameScreen(navController: NavController) {
             }
 
             if (isGameOver.value) {
+                viewModel.saveHighScore(currentLevel.value)
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center

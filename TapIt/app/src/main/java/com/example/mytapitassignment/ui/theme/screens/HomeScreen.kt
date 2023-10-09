@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,9 +27,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.mytapitassignment.viewModel.GameViewModel
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(viewModel: GameViewModel,navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -42,7 +44,7 @@ fun HomeScreen(navController: NavController) {
         ) {
             // Game title at the top of the screen
             Text(
-                text = "My Tap It Game",
+                text = "High Score: ${viewModel.highScore.value}",
                 fontSize = 50.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(top = 16.dp, bottom = 32.dp),
@@ -72,8 +74,3 @@ fun HomeScreen(navController: NavController) {
 
 
 
-@Preview
-@Composable
-fun PreviewHomeScreen() {
-    HomeScreen(rememberNavController())
-}
