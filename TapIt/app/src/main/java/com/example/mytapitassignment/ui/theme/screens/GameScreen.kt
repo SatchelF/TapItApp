@@ -17,7 +17,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -81,11 +84,10 @@ fun GameScreen(viewModel: GameViewModel,navController: NavController) {
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "Game Over",
+                        text = "GAME OVER",
                         fontSize = 60.sp,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.Monospace,
-                        color = Color.Magenta
+                        color = Color.Red
                     )
                     Spacer(modifier = Modifier.height(16.dp))
 
@@ -96,8 +98,10 @@ fun GameScreen(viewModel: GameViewModel,navController: NavController) {
                             navController.navigate("homeScreen")
                         },
                         modifier = Modifier.padding(8.dp)
+                            .width(200.dp)
+                            .height(60.dp)
                     ) {
-                        Text(text = "Return to Main Menu")
+                        Text(text = "Main Menu", fontSize = 24.sp)
                     }
                 }
             }
@@ -106,3 +110,5 @@ fun GameScreen(viewModel: GameViewModel,navController: NavController) {
         }
     }
 }
+
+

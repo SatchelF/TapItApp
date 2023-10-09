@@ -18,15 +18,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.mytapitassignment.ui.theme.components.BoxGrid
 import com.example.mytapitassignment.viewModel.GameViewModel
 
 @Composable
@@ -42,7 +45,13 @@ fun HomeScreen(viewModel: GameViewModel,navController: NavController) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Game title at the top of the screen
+            Text(
+                text = "TAP IT!",
+                fontSize = 100.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 16.dp, bottom = 100.dp),
+                color = Color.White
+            )
             Text(
                 text = "High Score: ${viewModel.highScore.value}",
                 fontSize = 50.sp,
@@ -51,9 +60,8 @@ fun HomeScreen(viewModel: GameViewModel,navController: NavController) {
                 color = Color.White
             )
 
-            // Display the current high score (You can integrate this later with SharedPreferences)
             Text(
-                text = "High Score: 0",  // Placeholder, you'll replace 0 with actual high score
+                text = "High Score: 0",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
@@ -64,9 +72,12 @@ fun HomeScreen(viewModel: GameViewModel,navController: NavController) {
             // Play Game button
             Button(
                 onClick = { navController.navigate("gameScreen") },
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier
+                    .padding(8.dp)
+                    .width(200.dp)
+                    .height(60.dp)
             ) {
-                Text(text = "Play Game")
+                Text(text = "Play Game", fontSize = 24.sp)
             }
         }
     }

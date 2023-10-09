@@ -19,7 +19,8 @@ fun BoxGrid(
     currentLevel: MutableState<Int>,
     pillBoxColors: MutableState<MutableList<Color>>,
     isGameOver: MutableState<Boolean>,
-    currentIndex: MutableState<Int>
+    currentIndex: MutableState<Int>,
+    interactive: Boolean = true
 ) {
     val colors = listOf(Color.Red, Color.Blue, Color.Green, Color.Yellow)
     val colorIndices = remember { mutableStateListOf(0, 1, 2, 3) }
@@ -36,18 +37,18 @@ fun BoxGrid(
                         ColoredClickableBox(
                             color = colors[removedColorIndex]
                         ) {
-                            if (colors[removedColorIndex] == pillBoxColors.value[currentIndex.value]) {
-                                currentIndex.value += 1
-                                // If all colors in sequence are clicked correctly
-                                if (currentIndex.value == pillBoxColors.value.size) {
-                                    currentLevel.value++
-                                    pillBoxColors.value.add(colors.random())
-                                    currentIndex.value = 0 // Reset the index
+                            if (interactive) { // <-- Apply the interactive check here
+                                if (colors[removedColorIndex] == pillBoxColors.value[currentIndex.value]) {
+                                    currentIndex.value += 1
+                                    if (currentIndex.value == pillBoxColors.value.size) {
+                                        currentLevel.value++
+                                        pillBoxColors.value.add(colors.random())
+                                        currentIndex.value = 0
+                                    }
+                                } else {
+                                    isGameOver.value = true
+                                    currentIndex.value = 0
                                 }
-                            } else {
-                                // Handle incorrect click
-                                isGameOver.value = true
-                                currentIndex.value = 0 // Reset the index
                             }
                         }
                     }

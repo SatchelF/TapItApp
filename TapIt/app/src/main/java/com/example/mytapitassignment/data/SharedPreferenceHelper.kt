@@ -8,7 +8,6 @@ object SharedPreferencesHelper {
     private const val PREFERENCES_NAME = "MyTapItGamePrefs"
     private const val HIGH_SCORE_KEY = "HighScore"
 
-    // Function to get an instance of the SharedPreferences
     private fun getSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
     }
